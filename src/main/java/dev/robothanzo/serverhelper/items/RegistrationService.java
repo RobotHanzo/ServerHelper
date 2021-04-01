@@ -20,8 +20,8 @@ public class RegistrationService {
     public static void register(@Nonnull ServerHelper plugin) {
         Category hanzoSpecials;
         SlimefunItemStack WRENCH;
-        ItemStack skull = new CustomItem(Material.PLAYER_HEAD, "&bRobotHanzo");
-        SkullMeta meta = (SkullMeta) Bukkit.getItemFactory().getItemMeta(Material.PLAYER_HEAD);
+        ItemStack skull = new CustomItem(Material.PLAYER_HEAD, "&bRobotHanzo 特製物品");
+        SkullMeta meta = (SkullMeta) skull.getItemMeta();
         meta.setOwner("RobotHanzo");
         skull.setItemMeta(meta);
         hanzoSpecials = new Category(new NamespacedKey(ServerHelper.inst(), "serverhelper"), skull);
