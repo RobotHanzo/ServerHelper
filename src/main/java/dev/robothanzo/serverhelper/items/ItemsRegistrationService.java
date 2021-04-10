@@ -5,7 +5,6 @@ import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -13,10 +12,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 import javax.annotation.Nonnull;
 
-public class RegistrationService {
-    private RegistrationService() {
-    }
-
+public class ItemsRegistrationService {
     public static void register(@Nonnull ServerHelper plugin) {
         Category hanzoSpecials;
         SlimefunItemStack WRENCH;

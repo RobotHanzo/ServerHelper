@@ -3,7 +3,6 @@ version: @version@
 main: dev.robothanzo.serverhelper.ServerHelper
 api-version: 1.16
 prefix: "ServerHelper"
-load: STARTUP
 authors: [ RobotHanzo ]
 description: A plugin used on my own slimefun survival server, it works :)
 website: https://robothanzo.dev
