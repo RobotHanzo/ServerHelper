@@ -2,10 +2,11 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
     id 'java'
+    id 'net.minecrell.plugin-yml.bukkit' version '0.3.0'
 }
 
 group = 'dev.robothanzo'
-version = '1.0.0'
+version = '1.0.1'
 
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
@@ -29,6 +30,28 @@ repositories {
 dependencies {
     compileOnly 'com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT'
     implementation 'com.github.Slimefun:Slimefun4:master-SNAPSHOT'
+    implementation 'com.github.thebusybiscuit:CS-CoreLib2:master-SNAPSHOT'
+}
+
+bukkit {
+    main = 'dev.robothanzo.serverhelper.ServerHelper'
+
+    // API version (should be set for 1.13+)
+    apiVersion = '1.16'
+    authors = ['RobotHanzo']
+    depend = ['Slimefun']
+    prefix = 'ServerHelper'
+    commands {
+        installresourcepack {
+            description = 'Installs server requested resource pack'
+            usage = '/installresourcepack'
+        }
+        convertholdingitem {
+            description = "Converts holding slimefun item to a working one"
+            usage = "/convertholdingitem"
+            aliases = ["chi"]
+        }
+    }
 }
 
 processResources {

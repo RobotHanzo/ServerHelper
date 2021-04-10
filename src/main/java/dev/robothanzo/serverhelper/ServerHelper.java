@@ -3,6 +3,7 @@ package dev.robothanzo.serverhelper;
 import dev.robothanzo.serverhelper.commands.CommandsRegistrationService;
 import dev.robothanzo.serverhelper.items.ItemsRegistrationService;
 import dev.robothanzo.serverhelper.listeners.ListenersRegistrationService;
+import dev.robothanzo.serverhelper.utils.GithubReleasesUpdater;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import me.mrCookieSlime.Slimefun.cscorelib2.config.Config;
 import me.mrCookieSlime.Slimefun.cscorelib2.updater.GitHubBuildsUpdater;
@@ -22,7 +23,7 @@ public final class ServerHelper extends JavaPlugin implements SlimefunAddon {
         instance = this;
         Config cfg = new Config(this);
         if (cfg.getBoolean("options.auto-update")) {
-
+            new GithubReleasesUpdater(this, getFile()).start();
         }
         CommandsRegistrationService.register(this);
         ItemsRegistrationService.register(this);
