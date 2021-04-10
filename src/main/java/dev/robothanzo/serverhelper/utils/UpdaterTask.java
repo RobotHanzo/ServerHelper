@@ -8,17 +8,19 @@ import org.bukkit.ChatColor;
 import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.net.URL;
+import java.util.function.Function;
 import java.util.logging.Level;
 
 // Most of the code are copied from TheBusyBiscuit's Updater, thanks!
 public class UpdaterTask implements Runnable {
     private final GithubReleasesUpdater updater;
     private final URL url;
+    private static Function<Boolean,Boolean> resultCallback;
 
-
-    UpdaterTask(@Nonnull GithubReleasesUpdater updater, @Nonnull URL url) {
+    UpdaterTask(@Nonnull GithubReleasesUpdater updater, @Nonnull URL url, Function<Boolean, Boolean> callback) {
         this.url = url;
         this.updater = updater;
+        resultCallback = callback;
     }
 
     public void run() {
@@ -34,8 +36,10 @@ public class UpdaterTask implements Runnable {
                 if (updater.shouldUpdate(updater.getLocalVersion(), remoteVersion)) {
                     updater.getPlugin().getLogger().log(Level.INFO, ChatColor.GOLD + "Found update (" + updater.getLocalVersion() + " -> " + remoteVersion + "), updating...");
                     new HTTPGet(downloadURL, updater.getTimeout()).getToFile("plugins/" + Bukkit.getUpdateFolder(), updater.getFile().getName());
+                    resultCallback.apply(true);
                 } else {
                     updater.getPlugin().getLogger().log(Level.INFO, ChatColor.GREEN + "The current version (" + updater.getLocalVersion() + ") is the latest. No updates needed");
+                    resultCallback.apply(false);
                 }
             }
         } catch (IOException e) {

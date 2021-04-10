@@ -6,10 +6,11 @@ import dev.robothanzo.serverhelper.listeners.ListenersRegistrationService;
 import dev.robothanzo.serverhelper.utils.GithubReleasesUpdater;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import me.mrCookieSlime.Slimefun.cscorelib2.config.Config;
-import me.mrCookieSlime.Slimefun.cscorelib2.updater.GitHubBuildsUpdater;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.io.File;
 
 public final class ServerHelper extends JavaPlugin implements SlimefunAddon {
     private static ServerHelper instance;
@@ -44,5 +45,9 @@ public final class ServerHelper extends JavaPlugin implements SlimefunAddon {
     @Override
     public String getBugTrackerURL() {
         return null;
+    }
+
+    public File getPluginFile() {
+        return getFile();
     }
 }

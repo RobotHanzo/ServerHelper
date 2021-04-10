@@ -5,6 +5,7 @@ import me.mrCookieSlime.Slimefun.cscorelib2.updater.Updater;
 import org.bukkit.plugin.Plugin;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -14,6 +15,7 @@ public class GithubReleasesUpdater implements Updater {
     protected static ServerHelper PLUGIN;
     protected static String CURRENT_VERSION;
     protected static File FILE;
+    protected static Boolean UPDATED;
 
     public GithubReleasesUpdater(@Nonnull ServerHelper plugin, @Nonnull File file) {
         try {
@@ -59,10 +61,16 @@ public class GithubReleasesUpdater implements Updater {
         return 10000;
     }
 
+    @Nullable
+    public Boolean isUpdated(){
+        return UPDATED;
+    }
+
     @Override
     public void start() {
+        UpdaterTask updaterTask = new UpdaterTask(this, RELEASE_API_URL, result -> UPDATED = result);
         PLUGIN.getServer().getScheduler().runTask(PLUGIN, () -> {
-            Thread thread = new Thread(new UpdaterTask(this, RELEASE_API_URL), "Updater Task");
+            Thread thread = new Thread(updaterTask, "Updater Task");
             thread.start();
         });
     }
