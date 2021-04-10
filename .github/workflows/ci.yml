@@ -20,3 +20,9 @@ jobs:
         with:
           name: ServerHelper
           path: build/libs
+      - name: Upload to releases
+        uses: softprops/action-gh-release@v1
+        with:
+          files: build/libs/ServerHelper-*.jar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
