@@ -35,8 +35,6 @@ dependencies {
 
 bukkit {
     main = 'dev.robothanzo.serverhelper.ServerHelper'
-
-    // API version (should be set for 1.13+)
     apiVersion = '1.16'
     authors = ['RobotHanzo']
     depend = ['Slimefun']
@@ -45,11 +43,6 @@ bukkit {
         installresourcepack {
             description = 'Installs server requested resource pack'
             usage = '/installresourcepack'
-        }
-        convertholdingitem {
-            description = "Converts holding slimefun item to a working one"
-            usage = "/convertholdingitem"
-            aliases = ["chi"]
         }
     }
 }

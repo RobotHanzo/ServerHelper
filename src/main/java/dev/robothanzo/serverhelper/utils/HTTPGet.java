@@ -25,15 +25,6 @@ public class HTTPGet {
 
         // always check HTTP response code first
         if (responseCode == HttpURLConnection.HTTP_OK) {
-            String disposition = httpConn.getHeaderField("Content-Disposition");
-            String contentType = httpConn.getContentType();
-            int contentLength = httpConn.getContentLength();
-
-            System.out.println("Content-Type = " + contentType);
-            System.out.println("Content-Disposition = " + disposition);
-            System.out.println("Content-Length = " + contentLength);
-            System.out.println("fileName = " + fileName);
-
             // opens input stream from the HTTP connection
             InputStream inputStream = httpConn.getInputStream();
 
@@ -48,10 +39,6 @@ public class HTTPGet {
 
             outputStream.close();
             inputStream.close();
-
-            System.out.println("File downloaded");
-        } else {
-            System.out.println("No file to download. Server replied HTTP code: " + responseCode);
         }
         httpConn.disconnect();
     }
