@@ -1,5 +1,7 @@
 package dev.robothanzo.serverhelper.listeners;
 
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
+import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
@@ -7,37 +9,20 @@ import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
-
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
-
-
-
-import org.bukkit.event.inventory.InventoryOpenEvent;
-
 import org.bukkit.inventory.ItemStack;
-
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class PlayerJoining implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         for (ItemStack item : event.getPlayer().getInventory().getContents()) {
-
             SlimefunItem toConvert = SlimefunItem.getByItem(item);
-
             if (toConvert == null) {
-
                 continue;
-
             }
-
             ItemMeta im = item.getItemMeta();
-
             SlimefunPlugin.getItemTextureService().setTexture(im, toConvert.getId());
-
             item.setItemMeta(im);
-
         }
         TextComponent welcomeComp = new TextComponent(
                 TextComponent.fromLegacyText(
@@ -62,7 +47,7 @@ public class PlayerJoining implements Listener {
         TextComponent welcomeBroadcastComp = new TextComponent(
                 TextComponent.fromLegacyText(
                         ChatColor.translateAlternateColorCodes(
-                                '&', "&6&l" + event.getPlayer().getName() +" &3&l加入了伺服器")));
+                                '&', "&6&l" + event.getPlayer().getName() + " &3&l加入了伺服器")));
         Bukkit.broadcast(welcomeBroadcastComp);
         event.setJoinMessage(null);
     }
